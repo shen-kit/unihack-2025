@@ -1,13 +1,13 @@
 import { Flex, Text } from "@mantine/core";
 import styles from "../css/Sidebar.module.css";
 
-function UnitCard({ data, onClick }) {
+function UnitCard({ data, color, onClick }) {
   return (
     <>
       <Flex
         direction="column"
-        bg="lightblue"
-        h="60px"
+        bg={color}
+        h="3rem"
         w="90%"
         style={{ cursor: "pointer" }}
         justify="center"
@@ -15,8 +15,10 @@ function UnitCard({ data, onClick }) {
         onClick={onClick}
         className={styles["unit-card"]}
       >
-        <Text size="xl">{data.unitCode}</Text>
-        <Text size="md">{data.unitName}</Text>
+        <Text size="lg" fw={600}>
+          {data.unitcode}
+        </Text>
+        <Text size="md">{data.name}</Text>
       </Flex>
     </>
   );

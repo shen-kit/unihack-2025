@@ -1,7 +1,7 @@
 // backend/schemas/offeringSchema.js
 
 import mongoose from "mongoose";
-import classTypeSchema from "./classTypeSchema.js";
+import { classTypeSchema } from "./classTypeSchema.js";
 
 const offeringSchema = new mongoose.Schema({
   year: {
@@ -19,4 +19,5 @@ const offeringSchema = new mongoose.Schema({
   classTypes: [classTypeSchema], // Array of class types
 });
 
-export default offeringSchema;
+const Offering = mongoose.model("Offering", offeringSchema);
+export { offeringSchema, Offering };

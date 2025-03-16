@@ -3,7 +3,7 @@
 import mongoose from "mongoose";
 
 const classSchema = new mongoose.Schema({
-  _id: {
+  class_id: {
     type: Number,
     required: true,
     unique: true, // unique within each offering
@@ -19,7 +19,7 @@ const classSchema = new mongoose.Schema({
   day: {
     type: String,
     required: true,
-    enum: ["mon", "tue", "wed", "thu", "fri"],
+    enum: ["MON", "TUE", "WED", "THU", "FRI"],
   },
   time: {
     type: Number, // start time in 24h format
@@ -36,4 +36,5 @@ const classSchema = new mongoose.Schema({
   },
 });
 
-export default classSchema;
+const Class = mongoose.model("Class", classSchema);
+export { classSchema, Class };

@@ -1,62 +1,243 @@
+/* 🌟 Main Container */
 .login-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start; 
     align-items: center;
-    height: 100vh;
-    background-color: #f3f3f3;
-  }
-  
-  .login-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    height: 100vh; 
+    padding-top: 5vh; 
+    background: linear-gradient(135deg, #004aad, #007bff, #1a73e8);
+}
+
+/* 🌟 Title (allocate++) - Dynamically Scales */
+.login-title-main {
+    font-size: clamp(30px, 7vw, 70px);  /* Minimum 30px, scales up to 70px */
+    font-weight: bold;
+    color: white;
     text-align: center;
-  }
-  
-  .login-title {
-    font-size: 24px;
+    margin-bottom: 5vh; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* 🌟 Login Content (Flexbox) */
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw; /* Scales spacing based on screen width */
+    flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+}
+
+/* 🌟 Animation - Scales Responsively */
+.animation-container {
+    width: clamp(250px, 40vw, 650px); /* Min 250px, max 650px */
+    height: clamp(250px, 40vw, 650px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floating 3s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 🌟 Login Card - Scales */
+.login-card {
+    background: white;
+    padding: 5vh; 
+    border-radius: 20px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
+    width: clamp(300px, 45vw, 550px); /* Min 300px, max 550px */
+    min-height: 500px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+/* 🌟 Login Title inside Card */
+.login-title {
+    font-size: clamp(20px, 3vw, 32px); /* Min 20px, scales up */
     font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 2vh;
+    color: #004aad;
+}
+
+/* 🌟 Form Group */
+.form-group {
+    margin-bottom: 2vh;
     text-align: left;
-  }
-  
-  .form-group label {
-    display: block;
+}
+
+.form-group label {
     font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
+    color: #004aad;
+}
+
+.form-group input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-button {
+    padding: 1rem; 
+    border: 2px solid #1a73e8;
+    border-radius: 10px;
+    font-size: clamp(14px, 2vw, 18px); 
+}
+
+/* 🌟 Buttons */
+.login-button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 1rem;
+    background: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: clamp(16px, 2.5vw, 20px); 
+    font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .login-button:hover {
-    background-color: #0056b3;
-  }
-  
+    transition: background 0.3s ease-in-out;
+    margin-top: 2vh;
+}
+
+.login-button:hover {
+    background: #0056b3;
+}
+
+.forgot-password-button {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    color: #1a73e8;
+    border: none;
+    font-size: clamp(14px, 2vw, 18px); 
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    margin-top: 2vh; 
+}
+
+.forgot-password-button:hover {
+    color: #0056b3;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 1024px) {
+    .login-content {
+        flex-direction: column;
+        gap: 5vh;
+    }
+
+    .animation-container {
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    .login-card {
+        width: 90%; 
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-title-main {
+        font-size: clamp(30px, 6vw, 50px);
+        margin-bottom: 3vh;
+    }
+
+    .animation-container {
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    .login-card {
+        width: 95%;
+        padding: 3vh;
+    }
+}
+
+/* 📌 Extra small screens (Mobile) */
+@media (max-width: 600px) {
+    .login-container {
+        padding-top: 2vh;
+    }
+
+    .login-title-main {
+        font-size: clamp(24px, 6vw, 35px);
+        margin-bottom: 2vh;
+    }
+
+    .animation-container {
+        max-width: 250px;
+        max-height: 250px;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 3vh;
+    }
+
+    .form-group input {
+        padding: 0.8rem;
+    }
+
+    .login-button {
+        padding: 0.8rem;
+    }
+
+    .forgot-password-button {
+        font-size: clamp(12px, 2vw, 16px); 
+    }
+}
+
+/* 🔐 Forgot Password Page */
+.forgot-password-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8vw; 
+    height: 100vh; 
+}
+
+.forgot-password-animation {
+    width: clamp(250px, 40vw, 600px);
+    height: clamp(250px, 40vw, 600px);
+}
+
+.forgot-password-card {
+    width: clamp(250px, 40vw, 450px);
+    padding: 4vh;
+}
+
+/* Password input */
+.password-group {
+    position: relative;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+/* Toggle password visibility */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-password:hover {
+    color: #0056b3;
+}

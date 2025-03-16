@@ -1,0 +1,114 @@
+/* 🌟 Help Container */
+.help-container {
+  width: 80%;
+  max-width: 700px;
+  margin: 5vh auto;
+  padding: 3vh;
+  background: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* 🌟 Help Title */
+.help-title {
+  font-size: clamp(20px, 3vw, 28px); /* Scales between 20px - 28px */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 3vh;
+}
+
+/* 🌟 Accordion */
+.help-accordion {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1vw;
+}
+
+.help-accordion .mantine-Accordion-item {
+  border-bottom: 1px solid #ddd;
+  padding: 1.5vh;
+}
+
+/* 🌟 Help Button */
+.help-button {
+  margin-top: 3vh;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 1vh 3vw;
+  border-radius: 8px;
+  font-size: clamp(14px, 2vw, 16px); /* Scales from 14px to 16px */
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.help-button:hover {
+  background-color: #0056b3;
+}
+
+/* 📌 Animation Container */
+.help-animation-container {
+  position: absolute;
+  bottom: clamp(200px, 30vh, 705px); /* Dynamically adjust position */
+  left: 50%;
+  transform: translateX(-50%); /* Center animation */
+  width: 100%;
+  height: clamp(200px, 30vh, 400px); /* Adjust animation height */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 1024px) {
+  .help-container {
+      width: 90%;
+      max-width: 600px;
+      padding: 3vh;
+  }
+
+  .help-animation-container {
+      bottom: 20vh;
+      height: 25vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .help-title {
+      font-size: clamp(18px, 4vw, 24px);
+  }
+
+  .help-container {
+      width: 95%;
+      padding: 2.5vh;
+  }
+
+  .help-animation-container {
+      bottom: 15vh;
+      height: 20vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .help-container {
+      width: 100%;
+      max-width: 90%;
+      padding: 2vh;
+  }
+
+  .help-title {
+      font-size: clamp(16px, 5vw, 22px);
+  }
+
+  .help-button {
+      font-size: 14px;
+      padding: 1vh 2vw;
+  }
+
+  .help-animation-container {
+      bottom: 10vh;
+      height: 18vh;
+  }
+}

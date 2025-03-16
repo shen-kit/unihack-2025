@@ -1,10 +1,17 @@
-function Planner(){
+import { useContext, useEffect } from "react";
+import Sidebar from "../components/Sidebar";
+import { PageContext } from "../contexts/PageContext";
+
+function Planner() {
+  const { setPage } = useContext(PageContext);
+  useEffect(() => {
+    setPage("planner");
+  });
   return (
     <>
-      Planner
+      <Sidebar />
     </>
-  ) 
+  );
 }
 
 export default Planner;
-
