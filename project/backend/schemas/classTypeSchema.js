@@ -1,7 +1,7 @@
 // backend/schemas/classTypeSchema.js
 
 import mongoose from "mongoose";
-import classSchema from "./classSchema.js";
+import { classSchema } from "./classSchema.js";
 
 const classTypeSchema = new mongoose.Schema({
   name: {
@@ -23,4 +23,6 @@ const classTypeSchema = new mongoose.Schema({
   classes: [classSchema], // Array of classes
 });
 
-export default classTypeSchema;
+const ClassType = mongoose.model("ClassType", classTypeSchema);
+
+export { classTypeSchema, ClassType };

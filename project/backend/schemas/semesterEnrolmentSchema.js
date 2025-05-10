@@ -1,7 +1,7 @@
 // backend/schemas/semesterEnrolmentSchema.js
 
 import mongoose from "mongoose";
-import unitEnrolmentSchema from "./unitEnrolmentSchema.js";
+import { unitEnrolmentSchema } from "./unitEnrolmentSchema.js";
 
 const semesterEnrolmentSchema = new mongoose.Schema({
   year: {
@@ -15,4 +15,8 @@ const semesterEnrolmentSchema = new mongoose.Schema({
   unitEnrolment: [unitEnrolmentSchema], // Array of unit enrolments
 });
 
-export default semesterEnrolmentSchema;
+const SemesterEnrolment = mongoose.model(
+  "SemesterEnrolment",
+  semesterEnrolmentSchema,
+);
+export { semesterEnrolmentSchema, SemesterEnrolment };

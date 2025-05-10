@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 import connectDB from "./database/db.js";
 import dotenv from "dotenv";
 
-import unitSchema from "./schemas/unitSchema.js";
-import studentSchema from "./schemas/studentSchema.js";
-
-const Unit = mongoose.model("Unit", unitSchema);
-const Student = mongoose.model("Student", studentSchema);
+import { Class } from "./schemas/classSchema.js";
+import { Offering } from "./schemas/offeringSchema.js";
+import { ClassType } from "./schemas/classTypeSchema.js";
+import { Unit } from "./schemas/unitSchema.js";
+import { Student } from "./schemas/studentSchema.js";
+import { SemesterEnrolment } from "./schemas/semesterEnrolmentSchema.js";
+import { UnitEnrolment } from "./schemas/unitEnrolmentSchema.js";
 
 dotenv.config();
 connectDB();
@@ -36,6 +38,7 @@ const dummyUnits = [
     name: "Introduction to Databases",
     offerings: [
       {
+        unitcode: "FIT3171",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -47,28 +50,28 @@ const dummyUnits = [
             tutor_count: 4,
             classes: [
               {
-                _id: 1,
+                class_id: 3171202511,
                 building: "Woodside",
                 room: "LG02",
-                day: "tue",
+                day: "TUE",
                 time: 1400,
                 weeks: "111111111111",
                 attend_type: "hybrid",
               },
               {
-                _id: 2,
+                class_id: 3171202512,
                 building: "Woodside",
                 room: "LG02",
-                day: "wed",
-                time: 1600,
+                day: "WED",
+                time: 1800,
                 weeks: "111111111111",
                 attend_type: "hybrid",
               },
               {
-                _id: 3,
+                class_id: 3171202513,
                 building: "Woodside",
                 room: "LG02",
-                day: "fri",
+                day: "FRI",
                 time: 1200,
                 weeks: "111111111111",
                 attend_type: "hybrid",
@@ -82,123 +85,37 @@ const dummyUnits = [
             tutor_count: 3,
             classes: [
               {
-                _id: 4,
+                class_id: 3171202514,
                 building: "LTB",
                 room: "1.27",
-                day: "mon",
+                day: "MON",
                 time: 800,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 5,
+                class_id: 3171202515,
                 building: "LTB",
                 room: "1.26",
-                day: "tue",
+                day: "TUE",
                 time: 1000,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 6,
+                class_id: 3171202516,
                 building: "LTB",
                 room: "1.27",
-                day: "tue",
+                day: "TUE",
                 time: 1200,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 7,
+                class_id: 3171202517,
                 building: "LTB",
                 room: "1.35",
-                day: "fri",
-                time: 1000,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "workshop",
-            duration: 2,
-            capacity: 200,
-            tutor_count: 4,
-            classes: [
-              {
-                _id: 1,
-                building: "Woodside",
-                room: "LG02",
-                day: "tue",
-                time: 1400,
-                weeks: "111111111111",
-                attend_type: "hybrid",
-              },
-              {
-                _id: 2,
-                building: "Woodside",
-                room: "LG02",
-                day: "wed",
-                time: 1600,
-                weeks: "111111111111",
-                attend_type: "hybrid",
-              },
-              {
-                _id: 3,
-                building: "Woodside",
-                room: "LG02",
-                day: "fri",
-                time: 1200,
-                weeks: "111111111111",
-                attend_type: "hybrid",
-              },
-            ],
-          },
-          {
-            name: "applied",
-            duration: 2,
-            capacity: 60,
-            tutor_count: 3,
-            classes: [
-              {
-                _id: 4,
-                building: "LTB",
-                room: "1.27",
-                day: "mon",
-                time: 800,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 5,
-                building: "LTB",
-                room: "1.26",
-                day: "tue",
-                time: 1000,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 6,
-                building: "LTB",
-                room: "1.27",
-                day: "tue",
-                time: 1200,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 7,
-                building: "LTB",
-                room: "1.35",
-                day: "fri",
+                day: "FRI",
                 time: 1000,
                 weeks: "111111111111",
                 attend_type: "in-person",
@@ -214,6 +131,7 @@ const dummyUnits = [
     name: "Algorithms and Data Structures",
     offerings: [
       {
+        unitcode: "FIT2004",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -225,19 +143,19 @@ const dummyUnits = [
             tutor_count: 4,
             classes: [
               {
-                _id: 1,
+                class_id: 2004202511,
                 building: "Woodside",
                 room: "LG02",
-                day: "mon",
+                day: "MON",
                 time: 1000,
                 weeks: "111111111111",
                 attend_type: "hybrid",
               },
               {
-                _id: 2,
+                class_id: 2004202512,
                 building: "LTB",
                 room: "G81",
-                day: "fri",
+                day: "FRI",
                 time: 800,
                 weeks: "111111111111",
                 attend_type: "hybrid",
@@ -251,150 +169,55 @@ const dummyUnits = [
             tutor_count: 3,
             classes: [
               {
-                _id: 3,
+                class_id: 2004202513,
                 building: "LTB",
                 room: "1.01",
-                day: "mon",
+                day: "MON",
                 time: 1000,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 4,
+                class_id: 2004202514,
                 building: "LTB",
                 room: "1.08",
-                day: "tue",
+                day: "TUE",
                 time: 1400,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 5,
+                class_id: 2004202515,
                 building: "Woodside",
                 room: "1.04",
-                day: "wed",
+                day: "WED",
                 time: 1400,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 6,
+                class_id: 2004202516,
                 building: "Woodside",
                 room: "1.04",
-                day: "wed",
+                day: "WED",
                 time: 1800,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 7,
+                class_id: 2004202517,
                 building: "Woodside",
                 room: "2.07",
-                day: "thu",
+                day: "THU",
                 time: 800,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 8,
+                class_id: 2004202518,
                 building: "Woodside",
                 room: "1.04",
-                day: "thu",
-                time: 1200,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "workshop",
-            duration: 2,
-            capacity: 200,
-            tutor_count: 4,
-            classes: [
-              {
-                _id: 1,
-                building: "Woodside",
-                room: "LG02",
-                day: "mon",
-                time: 1000,
-                weeks: "111111111111",
-                attend_type: "hybrid",
-              },
-              {
-                _id: 2,
-                building: "LTB",
-                room: "G81",
-                day: "fri",
-                time: 800,
-                weeks: "111111111111",
-                attend_type: "hybrid",
-              },
-            ],
-          },
-          {
-            name: "applied",
-            duration: 3,
-            capacity: 60,
-            tutor_count: 3,
-            classes: [
-              {
-                _id: 3,
-                building: "LTB",
-                room: "1.01",
-                day: "mon",
-                time: 1000,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 4,
-                building: "LTB",
-                room: "1.08",
-                day: "tue",
-                time: 1400,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 5,
-                building: "Woodside",
-                room: "1.04",
-                day: "wed",
-                time: 1400,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 6,
-                building: "Woodside",
-                room: "1.04",
-                day: "wed",
-                time: 1800,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 7,
-                building: "Woodside",
-                room: "2.07",
-                day: "thu",
-                time: 800,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 8,
-                building: "Woodside",
-                room: "1.04",
-                day: "thu",
+                day: "THU",
                 time: 1200,
                 weeks: "111111111111",
                 attend_type: "in-person",
@@ -410,6 +233,7 @@ const dummyUnits = [
     name: "Object-Oriented Programming",
     offerings: [
       {
+        unitcode: "FIT2099",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -421,161 +245,74 @@ const dummyUnits = [
             tutor_count: 1,
             classes: [
               {
-                _id: 1,
+                class_id: 2099202511,
                 building: "Learning Village",
                 room: "G08",
-                day: "mon",
+                day: "MON",
                 time: 900,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 2,
+                class_id: 2099202512,
                 building: "Learning Village",
                 room: "G09",
-                day: "mon",
+                day: "TUE",
                 time: 1100,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 3,
+                class_id: 2099202513,
                 building: "Learning Village",
                 room: "G08",
-                day: "mon",
+                day: "MON",
                 time: 1600,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 4,
+                class_id: 2099202514,
                 building: "Learning Village",
                 room: "G11",
-                day: "wed",
+                day: "WED",
                 time: 900,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 5,
+                class_id: 2099202515,
                 building: "Learning Village",
                 room: "1.05",
-                day: "wed",
+                day: "WED",
                 time: 1800,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 6,
+                class_id: 2099202516,
                 building: "Learning Village",
                 room: "G08",
-                day: "fri",
+                day: "FRI",
                 time: 900,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 7,
+                class_id: 2099202517,
                 building: "Learning Village",
                 room: "G06",
-                day: "fri",
+                day: "FRI",
                 time: 1400,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
               {
-                _id: 8,
+                class_id: 2099202518,
                 building: "Learning Village",
                 room: "G08",
-                day: "fri",
-                time: 1500,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "lab",
-            duration: 2,
-            capacity: 30,
-            tutor_count: 1,
-            classes: [
-              {
-                _id: 1,
-                building: "Learning Village",
-                room: "G08",
-                day: "mon",
-                time: 900,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 2,
-                building: "Learning Village",
-                room: "G09",
-                day: "mon",
-                time: 1100,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 3,
-                building: "Learning Village",
-                room: "G08",
-                day: "mon",
-                time: 1600,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 4,
-                building: "Learning Village",
-                room: "G11",
-                day: "wed",
-                time: 900,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 5,
-                building: "Learning Village",
-                room: "1.05",
-                day: "wed",
-                time: 1800,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 6,
-                building: "Learning Village",
-                room: "G08",
-                day: "fri",
-                time: 900,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 7,
-                building: "Learning Village",
-                room: "G06",
-                day: "fri",
-                time: 1400,
-                weeks: "101010101010", // only on odd weeks
-                attend_type: "in-person",
-              },
-              {
-                _id: 8,
-                building: "Learning Village",
-                room: "G08",
-                day: "fri",
-                time: 1500,
+                day: "FRI",
+                time: 1700,
                 weeks: "101010101010", // only on odd weeks
                 attend_type: "in-person",
               },
@@ -590,6 +327,7 @@ const dummyUnits = [
     name: "Operating Systems",
     offerings: [
       {
+        unitcode: "FIT2100",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -601,52 +339,19 @@ const dummyUnits = [
             tutor_count: 3,
             classes: [
               {
-                _id: 1,
+                class_id: 2100202511,
                 building: "Woodside",
                 room: "3.01",
-                day: "tue",
+                day: "TUE",
                 time: 1100,
                 weeks: "111111111111",
                 attend_type: "online-realtime",
               },
               {
-                _id: 2,
+                class_id: 2100202512,
                 building: "Woodside",
                 room: "3.04",
-                day: "thu",
-                time: 1500,
-                weeks: "111111111111",
-                attend_type: "online",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "tutorial",
-            duration: 1,
-            capacity: 120,
-            tutor_count: 3,
-            classes: [
-              {
-                _id: 1,
-                building: "Woodside",
-                room: "3.01",
-                day: "tue",
-                time: 1100,
-                weeks: "111111111111",
-                attend_type: "online-realtime",
-              },
-              {
-                _id: 2,
-                building: "Woodside",
-                room: "3.04",
-                day: "thu",
+                day: "THU",
                 time: 1500,
                 weeks: "111111111111",
                 attend_type: "online",
@@ -662,6 +367,7 @@ const dummyUnits = [
     name: "Computer Networks",
     offerings: [
       {
+        unitcode: "FIT3134",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -673,10 +379,10 @@ const dummyUnits = [
             tutor_count: 4,
             classes: [
               {
-                _id: 1,
+                class_id: 3134202511,
                 building: "LTB",
                 room: "G81",
-                day: "thu",
+                day: "THU",
                 time: 1300,
                 weeks: "101010101010",
                 attend_type: "online-realtime",
@@ -690,123 +396,46 @@ const dummyUnits = [
             tutor_count: 1,
             classes: [
               {
-                _id: 2,
+                class_id: 3134202512,
                 building: "LTB",
                 room: "2.01",
-                day: "tue",
+                day: "TUE",
                 time: 1500,
                 weeks: "010101010101",
                 attend_type: "in-person",
               },
               {
-                _id: 3,
+                class_id: 3134202513,
                 building: "LTB",
                 room: "2.01",
-                day: "thu",
+                day: "THU",
                 time: 1500,
                 weeks: "010101010101",
                 attend_type: "in-person",
               },
               {
-                _id: 4,
+                class_id: 3134202514,
                 building: "Woodside",
                 room: "2.01",
-                day: "thu",
+                day: "THU",
                 time: 800,
                 weeks: "010101010101",
                 attend_type: "in-person",
               },
               {
-                _id: 5,
+                class_id: 3134202515,
                 building: "Woodside",
                 room: "2.01",
-                day: "thu",
+                day: "THU",
                 time: 1800,
                 weeks: "010101010101",
                 attend_type: "in-person",
               },
               {
-                _id: 6,
+                class_id: 3134202516,
                 building: "Woodside",
                 room: "2.02",
-                day: "fri",
-                time: 1200,
-                weeks: "010101010101",
-                attend_type: "in-person",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "lecture",
-            duration: 2,
-            capacity: 80,
-            tutor_count: 4,
-            classes: [
-              {
-                _id: 1,
-                building: "LTB",
-                room: "G81",
-                day: "thu",
-                time: 1300,
-                weeks: "101010101010",
-                attend_type: "online-realtime",
-              },
-            ],
-          },
-          {
-            name: "lab",
-            duration: 2.5,
-            capacity: 20,
-            tutor_count: 1,
-            classes: [
-              {
-                _id: 2,
-                building: "LTB",
-                room: "2.01",
-                day: "tue",
-                time: 1500,
-                weeks: "010101010101",
-                attend_type: "in-person",
-              },
-              {
-                _id: 3,
-                building: "LTB",
-                room: "2.01",
-                day: "thu",
-                time: 1500,
-                weeks: "010101010101",
-                attend_type: "in-person",
-              },
-              {
-                _id: 4,
-                building: "Woodside",
-                room: "2.01",
-                day: "thu",
-                time: 800,
-                weeks: "010101010101",
-                attend_type: "in-person",
-              },
-              {
-                _id: 5,
-                building: "Woodside",
-                room: "2.01",
-                day: "thu",
-                time: 1800,
-                weeks: "010101010101",
-                attend_type: "in-person",
-              },
-              {
-                _id: 6,
-                building: "Woodside",
-                room: "2.02",
-                day: "fri",
+                day: "FRI",
                 time: 1200,
                 weeks: "010101010101",
                 attend_type: "in-person",
@@ -822,6 +451,7 @@ const dummyUnits = [
     name: "Software Engineering",
     offerings: [
       {
+        unitcode: "FIT3077",
         year: 2025,
         semester: 1,
         campus: "clayton",
@@ -833,10 +463,10 @@ const dummyUnits = [
             tutor_count: 3,
             classes: [
               {
-                _id: 1,
+                class_id: 3077202511,
                 building: "Learning Village",
                 room: "G08",
-                day: "thu",
+                day: "THU",
                 time: 1200,
                 weeks: "111100001111",
                 attend_type: "hybrid",
@@ -850,141 +480,55 @@ const dummyUnits = [
             tutor_count: 3,
             classes: [
               {
-                _id: 2,
+                class_id: 3077202512,
                 building: "Woodside",
                 room: "1.03",
-                day: "mon",
+                day: "MON",
                 time: 1100,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 3,
+                class_id: 3077202513,
                 building: "Woodside",
                 room: "1.08",
-                day: "mon",
+                day: "MON",
                 time: 1700,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 4,
+                class_id: 3077202514,
                 building: "Woodside",
                 room: "1.01",
-                day: "wed",
+                day: "WED",
                 time: 1100,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 5,
+                class_id: 3077202515,
                 building: "Woodside",
                 room: "1.03",
-                day: "wed",
+                day: "WED",
                 time: 1800,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 6,
+                class_id: 3077202516,
                 building: "LTB",
                 room: "1.03",
-                day: "thu",
+                day: "THU",
                 time: 900,
                 weeks: "111111111111",
                 attend_type: "in-person",
               },
               {
-                _id: 7,
+                class_id: 3077202517,
                 building: "LTB",
                 room: "1.38",
-                day: "fri",
-                time: 1300,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        campus: "clayton",
-        classTypes: [
-          {
-            name: "workshop",
-            duration: 2,
-            capacity: 150,
-            tutor_count: 3,
-            classes: [
-              {
-                _id: 1,
-                building: "Learning Village",
-                room: "G08",
-                day: "thu",
-                time: 1200,
-                weeks: "111100001111",
-                attend_type: "hybrid",
-              },
-            ],
-          },
-          {
-            name: "lab",
-            duration: 3,
-            capacity: 50,
-            tutor_count: 3,
-            classes: [
-              {
-                _id: 2,
-                building: "Woodside",
-                room: "1.03",
-                day: "mon",
-                time: 1100,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 3,
-                building: "Woodside",
-                room: "1.08",
-                day: "mon",
-                time: 1700,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 4,
-                building: "Woodside",
-                room: "1.01",
-                day: "wed",
-                time: 1100,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 5,
-                building: "Woodside",
-                room: "1.03",
-                day: "wed",
-                time: 1800,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 6,
-                building: "LTB",
-                room: "1.03",
-                day: "thu",
-                time: 900,
-                weeks: "111111111111",
-                attend_type: "in-person",
-              },
-              {
-                _id: 7,
-                building: "LTB",
-                room: "1.38",
-                day: "fri",
+                day: "FRI",
                 time: 1300,
                 weeks: "111111111111",
                 attend_type: "in-person",
@@ -1011,22 +555,11 @@ const dummyStudents = [
         unitEnrolment: [
           {
             unitcode: "FIT3171",
-            classes: [1, 4],
+            classes: [3171202511, 3171202512],
           },
-          {
-            unitcode: "FIT3171",
-            classes: [],
-          },
-        ],
-      },
-      {
-        year: 2025,
-        semester: 2,
-        unitEnrolment: [
-          {
-            unitcode: "FIT3171",
-            classes: [1, 2],
-          },
+          { unitcode: "FIT2004", classes: [2004202511] },
+          { unitcode: "FIT2099", classes: [] },
+          { unitcode: "FIT2100", classes: [] },
         ],
       },
     ],
@@ -1037,8 +570,13 @@ const dummyStudents = [
 const seedDb = async () => {
   try {
     // clear existing data
-    await Unit.deleteMany();
+    await Class.deleteMany();
+    await ClassType.deleteMany();
+    await Offering.deleteMany();
+    await SemesterEnrolment.deleteMany();
     await Student.deleteMany();
+    await UnitEnrolment.deleteMany();
+    await Unit.deleteMany();
 
     await Unit.insertMany(dummyUnits);
     await Student.insertMany(dummyStudents);

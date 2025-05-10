@@ -3,12 +3,17 @@ import UnitCard from "./UnitCard";
 import ClassCard from "./ClassCard";
 import { useState } from "react";
 
-function Unit({ data }) {
+function Unit({ data, color }) {
   const [visible, setVisible] = useState(true);
+  console.log(data);
 
   return (
     <Flex direction="column" w="100%" align="center" my="15px">
-      <UnitCard data={data} onClick={() => setVisible((v) => !v)} />
+      <UnitCard
+        data={data}
+        color={color}
+        onClick={() => setVisible((v) => !v)}
+      />
       <Transition
         mounted={visible}
         transition={{
@@ -25,9 +30,14 @@ function Unit({ data }) {
             w="100%"
             style={transitionStyles}
           >
-            {data.classes.map((c) => (
-              <ClassCard key={c.cl_id} data={c} />
-            ))}
+            {data.classTypes.map((c) => {
+              return (
+                <ClassCard
+                  key={c._id}
+                  data={{ ...c, unitcode: data.unitcode }}
+                />
+              );
+            })}
           </Flex>
         )}
       </Transition>

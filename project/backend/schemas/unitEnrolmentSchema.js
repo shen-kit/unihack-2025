@@ -13,4 +13,5 @@ const unitEnrolmentSchema = new mongoose.Schema({
   },
 });
 
-export default unitEnrolmentSchema;
+const UnitEnrolment = mongoose.model("UnitEnrolment", unitEnrolmentSchema);
+export { unitEnrolmentSchema, UnitEnrolment };

@@ -1,8 +1,7 @@
 // backend/schemas/unitSchema.js
 
 import mongoose from "mongoose";
-import offeringSchema from "./offeringSchema.js";
-
+import { offeringSchema } from "./offeringSchema.js";
 const unitSchema = new mongoose.Schema({
   code: {
     type: String,
@@ -16,4 +15,5 @@ const unitSchema = new mongoose.Schema({
   offerings: [offeringSchema], // Array of offerings
 });
 
-export default unitSchema;
+const Unit = mongoose.model("Unit", unitSchema);
+export { unitSchema, Unit };
